@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using System.IO;
 
 public class Map : MonoBehaviour {
 	float worldOpinion = 0.5f;				//IF REACHES 0, THEN EL PRESEDENTE LOSES
 
 	public int sizeX;
 	public int sizeY;
-	public Bounds testBounds;
-	Vector2 test;
+    public float tileSpacing;
 
 
 
@@ -24,14 +23,47 @@ public class Map : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        tiles = new Tile[sizeX, sizeY];
+		FileInfo levelFile = null;
+		StreamReader reader = null;
 
-        for (int x = 0; x < sizeX; x++)
+		tiles = new Tile[sizeX, sizeY];
+
+		levelFile = new FileInfo (Application.dataPath + "/level.txt");
+
+		if (levelFile != null && levelFile.Exists)
+		{
+			reader = levelFile.OpenText ();
+		}
+
+		int x = 0;
+		int y = 0;
+
+        if (reader != null)
         {
-            for (int y = 0; y < sizeY; y++)
+            string txt = reader.ReadLine();
+            while (txt != null)
             {
-                tiles[x, y] = new Tile();
+                for (x = 0; x < txt.Length; x++)
+                {
+                    if (txt.Substring(x, 1).Equals("A"))
+                    {
+                        tiles[x, y] = new OrbTile();
+                    }
+                    else if (txt.Substring(x, 1).Equals("B"))
+                    {
+                        tiles[x, y] = new BuildingTile();
+                    }
+
+                    Instantiate(tiles[x, y].getObj(), new Vector3(x * tileSpacing, -(y * tileSpacing), -3), Quaternion.AngleAxis(90, Vector3.left));
+                }
+
+                y++;
+                txt = reader.ReadLine();
             }
+        }
+        else
+        {
+
         }
 	}
 
@@ -42,7 +74,7 @@ public class Map : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-		this.testBounds = this.renderer.bounds;
+
 	}
 
 	int findIndex(Unit unit) {
