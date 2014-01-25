@@ -36,6 +36,19 @@ public class FadingScript : MonoBehaviour {
 		gameObject.renderer.material.color = colorData;
 	}
 
+	public bool IsFadeInStart()
+	{
+		return (FadeIn && !fadeInComplete);
+	}
+
+	public bool IsFadeOutStart()
+	{
+		return (FadeOut && 
+		        !fadeOutComplete && 
+		        fadeInComplete && 
+		        elapsed > Delay);
+	}
+
 	public bool IsFadeInComplete()
 	{
 		return fadeInComplete;

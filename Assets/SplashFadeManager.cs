@@ -24,8 +24,8 @@ public class SplashFadeManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (current + 1 < pages.Count) {
-			if (pages[current].IsFadeOutComplete())
+		if (current < pages.Count) {
+			if (pages[current].IsFadeOutStart())
 			{
 				current++;
 				pages[current].StartFade = true;
@@ -34,6 +34,10 @@ public class SplashFadeManager : MonoBehaviour {
 		else
 		{
 			End = true;
+		}
+
+		if (End) {
+			Application.LoadLevel("Title");
 		}
 	}
 }
