@@ -1,19 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Tile {
-	bool allowPlacement = false;
-	// Use this for initialization
-	void Start () {
-	
-	}
+public class Tile
+{
+    protected bool allowPlacement;
+    protected Object tileObj;
 
-	public bool canPlaceHere(GameObject theObject) {
-		return allowPlacement;
-	}
+    public Tile()
+    {
+        this.allowPlacement = false;
+    }
 
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public bool canPlaceHere(GameObject theObject)
+    {
+        return allowPlacement;
+    }
+
+    public Object getObj()
+    {
+        return tileObj;
+    }
 }
