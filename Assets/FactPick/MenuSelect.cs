@@ -33,6 +33,7 @@ public class MenuSelect : MonoBehaviour {
 			{
 			case 1:
 				//Regime Scenario
+                    Application.LoadLevel("City");
 				break;
 			case 2:
 				//Uprising Scenario
