@@ -5,6 +5,9 @@ using System.Collections;
 
 public class Unit : MonoBehaviour {
 
+    public Player[] players = new Player[2];
+
+
 	public Map map;
 
 	public int xPos = 0;
@@ -13,6 +16,8 @@ public class Unit : MonoBehaviour {
 
 	int currentHp;
 	public int maxHp = 100;
+    public int range;                       //RANGE OF EACH UNIT
+    public int speed;                       //HOW MANY TURNS THIS UNIT CAN MOVE PER TURN
 
     void setupSprites()
     {
@@ -54,6 +59,10 @@ public class Unit : MonoBehaviour {
 
 
         
+    }
+
+    void Damage(Unit target) {
+
     }
 
 	// Use this for initialization

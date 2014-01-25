@@ -47,14 +47,14 @@ public class Map : MonoBehaviour {
                 {
                     if (txt.Substring(x, 1).Equals("A"))
                     {
-                        tiles[x, y] = new OrbTile();
+                        //tiles[x, y] = new OrbTile();
                     }
                     else if (txt.Substring(x, 1).Equals("B"))
                     {
-                        tiles[x, y] = new BuildingTile();
+                        //tiles[x, y] = new BuildingTile();
                     }
 
-                    Instantiate(tiles[x, y].getObj(), new Vector3(x * tileSpacing, -(y * tileSpacing), -3), Quaternion.AngleAxis(90, Vector3.left));
+                    //Instantiate(tiles[x, y].getObj(), new Vector3(x * tileSpacing, -(y * tileSpacing), -3), Quaternion.AngleAxis(90, Vector3.left));
                 }
 
                 y++;
