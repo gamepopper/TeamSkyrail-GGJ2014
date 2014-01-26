@@ -1,0 +1,34 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 26.01.2014 11:58:16
+
+mtllib Road_Corner.mtl
+
+#
+# object Tile004
+#
+
+#
+# object Tile004
+#
+
+v  -64.0000 0.0000 64.0000
+v  64.0000 0.0000 64.0000
+v  64.0000 0.0000 -64.0000
+v  -64.0000 0.0000 -64.0000
+# 4 vertices
+
+vn 0.0000 1.0000 -0.0000
+# 1 vertex normals
+
+vt 0.0000 0.0000 0.0000
+vt 1.0000 0.0000 0.0000
+vt 1.0000 1.0000 0.0000
+vt 0.0000 1.0000 0.0000
+# 4 texture coords
+
+g Tile004
+usemtl Material__28
+s 1
+f 1/1/1 2/2/1 3/3/1 4/4/1 
+# 1 polygons
+
