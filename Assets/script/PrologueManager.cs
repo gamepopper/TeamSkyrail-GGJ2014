@@ -22,6 +22,9 @@ public class PrologueManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
+		choice = GameObject.Find("DecisionObject").
+			GetComponent<PersistantScripts>().choice;
+
 		if (choice == 0) 
 		{
 			pages.Add(GameObject.Find("Prologue_BlankRed").GetComponent<FadingScript>());

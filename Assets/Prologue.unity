@@ -142,7 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbf0830fc0f18cb40bdde9cffa4ede36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  choice: 1
+  choice: 0
+  guiSkin: {fileID: 11400000, guid: a6e282ef46ed06447ae3f75016e2153e, type: 2}
   End: 0
 --- !u!81 &204979043
 AudioListener:
@@ -236,7 +237,7 @@ MonoBehaviour:
   StartFade: 0
   FadeIn: 1
   FadeOut: 1
-  Delay: 1
+  Delay: 2
   FadeSpeed: 2
 --- !u!212 &392518340
 SpriteRenderer:
@@ -302,7 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartFade: 0
   FadeIn: 1
-  FadeOut: 0
+  FadeOut: 1
   Delay: 3
   FadeSpeed: 2
 --- !u!212 &876879647
@@ -370,7 +371,7 @@ MonoBehaviour:
   StartFade: 0
   FadeIn: 1
   FadeOut: 1
-  Delay: 1
+  Delay: 2
   FadeSpeed: 2
 --- !u!212 &1265330383
 SpriteRenderer:
@@ -510,7 +511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartFade: 0
   FadeIn: 1
-  FadeOut: 0
+  FadeOut: 1
   Delay: 3
   FadeSpeed: 2
 --- !u!212 &1847491280
