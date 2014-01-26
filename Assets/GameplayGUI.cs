@@ -21,25 +21,36 @@ public class GameplayGUI : MonoBehaviour {
 		{
 			GUI.skin = guiSkinRed;
 			pauseMenu.sprite = pauseRed;
+			exitMenu.sprite = exitRed;
 		} 
 		else 
 		{
 			GUI.skin = guiSkinBlue;
 			pauseMenu.sprite = pauseBlue;
+			exitMenu.sprite = exitBlue;
 		}
 
-		if (GUI.Button(new Rect(10, 10, 120, 40), "PAUSE")) {
+		if (GUI.Button(new Rect(10, 10, 120, 40), "PAUSE")) 
+		{
 			//Pause Action
 			pauseMenu.enabled = !pauseMenu.enabled;
+			exitMenu.enabled = false;
 
 		}
 
-		if (GUI.Button(new Rect(Screen.width - 130, 10, 120, 40), "END")) {
+		if (GUI.Button(new Rect(Screen.width - 130, 10, 120, 40), "END")) 
+		{
 			//End Action
 			exitMenu.enabled = !exitMenu.enabled;
+			pauseMenu.enabled = false;
 		}
 
 		if (pauseMenu.enabled) 
+		{
+
+		}
+
+		if (exitMenu.enabled) 
 		{
 
 		}
