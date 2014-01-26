@@ -14,11 +14,9 @@ public class Map : MonoBehaviour {
 
 	public int sizeX;
 	public int sizeY;
-    public float tileSpacing;
+    public int levelFactor;		// Set to 8 as each level tile is 8 by 8 tiles.
 
-
-
-	private Tile[,] tiles;
+	private LevelTile[,] levelTiles;
 
 	List<Unit> unitList = new List<Unit>();
 
@@ -45,7 +43,7 @@ public class Map : MonoBehaviour {
 		FileInfo levelFile = null;
 		StreamReader reader = null;
 
-		tiles = new Tile[sizeX, sizeY];
+		levelTiles = new LevelTile[sizeX/levelFactor, sizeY/levelFactor];
 
 		levelFile = new FileInfo (Application.dataPath + "/level.txt");
 
@@ -66,14 +64,14 @@ public class Map : MonoBehaviour {
                 {
                     if (txt.Substring(x, 1).Equals("A"))
                     {
-                        //tiles[x, y] = new OrbTile();
+                        levelTiles[x, y] = new OrbTile();
                     }
                     else if (txt.Substring(x, 1).Equals("B"))
                     {
-                        //tiles[x, y] = new BuildingTile();
+                        levelTiles[x, y] = new BuildingTile();
                     }
 
-                    //Instantiate(tiles[x, y].getObj(), new Vector3(x * tileSpacing, -(y * tileSpacing), -3), Quaternion.AngleAxis(90, Vector3.left));
+					GenerateLevelTile(levelTiles[x,y].getObj(), x, y);
                 }
 
                 y++;
@@ -86,9 +84,12 @@ public class Map : MonoBehaviour {
         }
 	}
 
-    void SetTile(Tile tile, int x, int y) {
-        tiles[x, y] = tile;
-    }
+	void SetTile(LevelTile levelTile, int x, int y)
+	{
+		levelTiles[x/levelFactor, y/levelFactor] = levelTile;
+		
+		// Need more to handel object swapping.
+	}
 
     // Update is called once per frame
     void Update()
@@ -125,19 +126,16 @@ public class Map : MonoBehaviour {
 		}
 	}
 
-    public bool PlaceObject(GameObject curObj, int xTile, int yTile)
-    {
-
-        //WORK OUT WHERE ON THE SCREEN TO PLACE THE UNIT
-        Vector2 pos = this.GetPositionFromTile(xTile, yTile);
-        //GET BOUNDS
-        float top = this.renderer.bounds.center.x - (this.renderer.bounds.extents.x);
-        float left = this.renderer.bounds.center.y + (this.renderer.bounds.extents.y);
-
-        curObj.transform.position = new Vector2(top + pos.x, left - pos.y);
-
-        return true;
-    }
+	public void GenerateLevelTile(Object obj, int levelX, int levelY)
+	{
+		//WORK OUT WHERE ON THE SCREEN TO PLACE THE LEVEL TILE
+		Vector2 pos = this.GetPositionFromTile(levelX*levelFactor,levelY*levelFactor);
+		//GET BOUNDS
+		float top =  this.renderer.bounds.center.x - (this.renderer.bounds.extents.x);
+		float left =  this.renderer.bounds.center.y + (this.renderer.bounds.extents.y);
+		
+		//Instantiate(obj, new Vector3(top + pos.x,left - pos.y, 0), Quaternion.AngleAxis(90, Vector3.left));
+	}
 
 	public bool PlaceUnit(Unit unit, int xTile, int yTile) {
 		//DERMINE BY 

@@ -3900,7 +3900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeX: 128
   sizeY: 64
-  tileSpacing: 0
+  levelFactor: 8
 --- !u!1 &1136394259
 GameObject:
   m_ObjectHideFlags: 0
