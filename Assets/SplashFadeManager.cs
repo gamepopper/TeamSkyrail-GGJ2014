@@ -11,7 +11,7 @@ public class SplashFadeManager : MonoBehaviour {
 	public bool End = false;
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
 		pages.Add(GameObject.Find("Splash_01").GetComponent<FadingScript>());
 		pages.Add(GameObject.Find("Splash_02").GetComponent<FadingScript>());
 		pages.Add(GameObject.Find("Splash_03").GetComponent<FadingScript>());
@@ -23,7 +23,7 @@ public class SplashFadeManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 		if (current < pages.Count) {
 			if (pages[current].IsFadeOutStart())
 			{
