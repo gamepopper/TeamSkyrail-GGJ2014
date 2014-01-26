@@ -97,7 +97,30 @@ public class Map : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Clicked - figuring out if clicked object");
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            GameObject hitObject;
+            if (Physics.Raycast(ray, out hit))
+            {
+                hitObject = hit.collider.gameObject;
+                Map objectMap = GetComponent<Map>();
+                //Debug.Log(objectMap.GetInstanceID() + " ---- " + this.GetInstanceID());
+                if (objectMap.GetInstanceID() == this.GetInstanceID())
+                {
+                    Vector3 translatedPoint = hit.point;
 
+                    translatedPoint.x -= this.transform.position.x - this.renderer.bounds.extents.x;
+                    translatedPoint.y += this.transform.position.y - this.renderer.bounds.extents.y;
+
+                    translatedPoint.y *= -1;
+
+                    Debug.Log(translatedPoint);
+                }
+            }
+        }
 	}
 
 	int findIndex(Unit unit) {
@@ -161,6 +184,19 @@ public class Map : MonoBehaviour {
 
 		return true;
 	}
+
+    Vector2 GetTilePosFromPos(float x, float y) {
+        Vector2 retPos = new Vector2();
+
+        float tileWidth, tileHeight;
+        tileWidth = (this.renderer.bounds.extents.x * 2) / sizeX;
+        tileHeight = (this.renderer.bounds.extents.y * 2) / sizeY;
+
+        retPos.x = Mathf.FloorToInt(x / tileWidth);
+        retPos.y = Mathf.FloorToInt(y / tileHeight);
+
+        return retPos;
+    }
 
 	Vector2 GetPositionFromTile(float xPos, float yPos) {
 		float tileWidth, tileHeight;
