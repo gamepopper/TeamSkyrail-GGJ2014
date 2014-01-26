@@ -27,15 +27,17 @@ public class MenuSelect : MonoBehaviour {
 	void Update() {
 		SelectionUpdate();
 
-		if (Input.GetMouseButtonDown(0)) 
+		if (Input.GetMouseButtonDown(0) || Input.GetKeyDown("return")) 
 		{
 			switch (Selection)
 			{
 			case 1:
 				//Regime Scenario
+				Application.LoadLevel("City");
 				break;
 			case 2:
 				//Uprising Scenario
+				Application.LoadLevel("City");
 				break;
 			}
 		}

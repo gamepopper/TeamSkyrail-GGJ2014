@@ -1245,18 +1245,23 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   GUItype: 0
+  pauseMenuenabled: 0
   pauseMenu: {fileID: 1470765452}
   pauseRed: {fileID: 21300000, guid: e38da03c6eb7b1b40ac461f62e0e7701, type: 3}
   pauseBlue: {fileID: 21300000, guid: dfc9561946e7b104ca43affec576f476, type: 3}
+  exitMenuenabled: 0
   exitMenu: {fileID: 31677631}
   exitRed: {fileID: 21300000, guid: deb952d923d4d7848a0def69e9ac33a3, type: 3}
   exitBlue: {fileID: 21300000, guid: 89fa4b9db8aa3204e8a224bf03aef331, type: 3}
+  surrenderMenuenabled: 0
   surrenderMenu: {fileID: 1111007457}
   surrenderRed: {fileID: 21300000, guid: d7160c31d6f976f42b5fd9be803cbbad, type: 3}
   surrenderBlue: {fileID: 21300000, guid: 450230748fe4c1344996b224d44f5ff9, type: 3}
+  optionsMenuenabled: 0
   optionsMenu: {fileID: 1304456210}
   optionsRed: {fileID: 21300000, guid: f02dec23a7d801248aad0cee3252a5f6, type: 3}
   optionsBlue: {fileID: 21300000, guid: b35d8f7de52e3fd4bba1f16172e40568, type: 3}
+  helpMenuenabled: 0
   helpMenu: {fileID: 1568273857}
   helpRed: {fileID: 21300000, guid: c89f4503b1cdef341a0842f53c955260, type: 3}
   helpBlue: {fileID: 21300000, guid: 0a15c797aa07f5846aa7f8a694357fd9, type: 3}
@@ -5188,6 +5193,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1470765453}
   - 212: {fileID: 1470765452}
+  - 114: {fileID: 1470765454}
   m_Layer: 8
   m_Name: PausePopup
   m_TagString: Untagged
@@ -5229,6 +5235,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1470765454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1470765451}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 605930d5419a3c5428ec2684b9ea47c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VirtualWidth: 1280
+  VirtualHeight: 720
 --- !u!1 &1475704689
 GameObject:
   m_ObjectHideFlags: 0

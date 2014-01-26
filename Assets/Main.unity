@@ -214,18 +214,23 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   GUItype: 0
+  pauseMenuenabled: 0
   pauseMenu: {fileID: 1067917148}
   pauseRed: {fileID: 21300000, guid: e38da03c6eb7b1b40ac461f62e0e7701, type: 3}
   pauseBlue: {fileID: 21300000, guid: dfc9561946e7b104ca43affec576f476, type: 3}
+  exitMenuenabled: 0
   exitMenu: {fileID: 594777186}
   exitRed: {fileID: 21300000, guid: deb952d923d4d7848a0def69e9ac33a3, type: 3}
   exitBlue: {fileID: 21300000, guid: 89fa4b9db8aa3204e8a224bf03aef331, type: 3}
+  surrenderMenuenabled: 0
   surrenderMenu: {fileID: 1748727673}
   surrenderRed: {fileID: 21300000, guid: d7160c31d6f976f42b5fd9be803cbbad, type: 3}
   surrenderBlue: {fileID: 21300000, guid: 450230748fe4c1344996b224d44f5ff9, type: 3}
+  optionsMenuenabled: 0
   optionsMenu: {fileID: 186567354}
   optionsRed: {fileID: 21300000, guid: f02dec23a7d801248aad0cee3252a5f6, type: 3}
   optionsBlue: {fileID: 21300000, guid: b35d8f7de52e3fd4bba1f16172e40568, type: 3}
+  helpMenuenabled: 0
   helpMenu: {fileID: 1718821624}
   helpRed: {fileID: 21300000, guid: c89f4503b1cdef341a0842f53c955260, type: 3}
   helpBlue: {fileID: 21300000, guid: 0a15c797aa07f5846aa7f8a694357fd9, type: 3}

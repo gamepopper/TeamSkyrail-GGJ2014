@@ -8,27 +8,36 @@ public class GameplayGUI : MonoBehaviour {
 	public GUIStyle guiLargeText;
 	public int GUItype = 0;
 
+	public bool pauseMenuenabled = false;
 	public SpriteRenderer pauseMenu;
 	public Sprite pauseRed;
 	public Sprite pauseBlue;
 
+	public bool exitMenuenabled = false;
 	public SpriteRenderer exitMenu;
 	public Sprite exitRed;
 	public Sprite exitBlue;
 
+	public bool surrenderMenuenabled = false;
 	public SpriteRenderer surrenderMenu;
 	public Sprite surrenderRed;
 	public Sprite surrenderBlue;
 
+	public bool optionsMenuenabled = false;
 	public SpriteRenderer optionsMenu;
 	public Sprite optionsRed;
 	public Sprite optionsBlue;
 
+	public bool helpMenuenabled = false;
 	public SpriteRenderer helpMenu;
 	public Sprite helpRed;
 	public Sprite helpBlue;
 
 	public int selection = 0;
+
+	private float originalWidth = 1920.0f; // define here the original resolution
+	private float originalHeight = 1080.0f; // you used to create the GUI contents
+	private Vector3 scale;
 
 	void OnGUI()
 	{
@@ -54,23 +63,25 @@ public class GameplayGUI : MonoBehaviour {
 		if (GUI.Button(new Rect(10, 10, 120, 40), "PAUSE")) 
 		{
 			//Pause Action
-			pauseMenu.enabled = !pauseMenu.enabled;
-			exitMenu.enabled = false;
+			pauseMenuenabled = !pauseMenuenabled;
+			exitMenuenabled = false;
 		}
 
 		if (GUI.Button(new Rect(Screen.width - 130, 10, 120, 40), "END")) 
 		{
 			//End Action
-			exitMenu.enabled = !exitMenu.enabled;
-			pauseMenu.enabled = false;
+			exitMenuenabled = !exitMenuenabled;
+			pauseMenuenabled = false;
 		}
 
 		GUI.Box(new Rect(5, Screen.height - 190, 200, 180), ".\nWorld Opinion\n\n\n\nPublic Opinion");
 		GUI.Box(new Rect(Screen.width - 205, Screen.height - 190, 200, 180), ".\nUnit Purchase\nOptions");
 		GUI.Box(new Rect(215, Screen.height - 190, Screen.width - 430, 180), ".\nDomination Map Overview");
 
-		if (pauseMenu.enabled) 
+		if (pauseMenuenabled) 
 		{
+			GUI.DrawTexture(new Rect(Screen.width/2 - 120, Screen.height/2 - 120, 349/1.5f, 437/1.5f), pauseMenu.sprite.texture);
+
 			Color grey = new Color(0.7f, 0.7f, 0.7f, 1f);
 			Color white = new Color(1,1,1,1);
 
@@ -104,8 +115,10 @@ public class GameplayGUI : MonoBehaviour {
 
 			GUI.Label(new Rect(Screen.width/2 - 90, Screen.height/2 + 90, 340, 200), "END", guiLargeText);
 		}
-		else if (exitMenu.enabled) 
+		if (exitMenuenabled) 
 		{
+			GUI.DrawTexture(new Rect(Screen.width/2 - 205, Screen.height/2 - 150, 611/1.5f, 438/1.5f), exitMenu.sprite.texture);
+
 			Color grey = new Color(0.7f, 0.7f, 0.7f, 1f);
 			Color white = new Color(1,1,1,1);
 			
@@ -125,8 +138,9 @@ public class GameplayGUI : MonoBehaviour {
 			
 			GUI.Label(new Rect(Screen.width/2 + 20, Screen.height/2 + 80, 340, 200), "RETURN", guiLargeText);
 		}
-		else if (surrenderMenu.enabled) 
+		if (surrenderMenuenabled) 
 		{
+			GUI.DrawTexture(new Rect(Screen.width/2 - 205, Screen.height/2 - 150, 611/1.5f, 438/1.5f), surrenderMenu.sprite.texture);
 			Color grey = new Color(0.7f, 0.7f, 0.7f, 1f);
 			Color white = new Color(1,1,1,1);
 			
@@ -146,12 +160,14 @@ public class GameplayGUI : MonoBehaviour {
 			
 			GUI.Label(new Rect(Screen.width/2 + 10, Screen.height/2 + 80, 340, 200), "DECLINE", guiLargeText);
 		}
-		else if (optionsMenu.enabled)
+		if (optionsMenuenabled)
 		{
+			GUI.DrawTexture(new Rect(Screen.width/2 - 200, Screen.height/2 - 150, 609/1.5f, 437/1.5f), optionsMenu.sprite.texture);
 			//Add gui stuff here!!!
 		}
-		else if (helpMenu.enabled)
+		if (helpMenuenabled)
 		{
+			GUI.DrawTexture(new Rect(Screen.width/2 - 210, Screen.height/2 - 150, 611/1.5f, 438/1.5f), helpMenu.sprite.texture);
 			guiLargeText.fontSize = 24;
 			guiLargeText.wordWrap = true;
 			GUI.TextArea(new Rect(Screen.width/2 - 180, Screen.height/2 - 70, 360, 430), 
@@ -161,23 +177,23 @@ public class GameplayGUI : MonoBehaviour {
 
 	void Update()
 	{
-		if (exitMenu.enabled) 
+		if (exitMenuenabled) 
 		{
 			ExitMenuInput();
 		} 
-		else if (pauseMenu.enabled) 
+		else if (pauseMenuenabled) 
 		{
 			PauseMenuInput();
 		}
-		else if (surrenderMenu.enabled)
+		else if (surrenderMenuenabled)
 		{
 			SurrenderMenuInput();
 		}
-		else if (optionsMenu.enabled)
+		else if (optionsMenuenabled)
 		{
 			OptionsMenuInput();
 		}
-		else if (helpMenu.enabled)
+		else if (helpMenuenabled)
 		{
 			HelpMenuInput();
 		}
@@ -211,7 +227,7 @@ public class GameplayGUI : MonoBehaviour {
 
 		if (Input.GetKeyDown("return")) 
 		{
-			exitMenu.enabled = false;
+			exitMenuenabled = false;
 
 			if (selection == 0)
 			{
@@ -243,23 +259,23 @@ public class GameplayGUI : MonoBehaviour {
 			{
 			case 0:
 				selection = 0;
-				pauseMenu.enabled = false;
-				optionsMenu.enabled = true;
+				pauseMenuenabled = false;
+				optionsMenuenabled = true;
 				break;
 			case 1:
 				selection = 0;
-				pauseMenu.enabled = false;
-				helpMenu.enabled = true;
+				pauseMenuenabled = false;
+				helpMenuenabled = true;
 				break;
 			case 2:
 				selection = 0;
-				pauseMenu.enabled = false;
-				surrenderMenu.enabled = true;
+				pauseMenuenabled = false;
+				surrenderMenuenabled = true;
 				break;
 			case 3:
 				selection = 0;
-				pauseMenu.enabled = false;
-				exitMenu.enabled = true;
+				pauseMenuenabled = false;
+				exitMenuenabled = true;
 				break;
 			}
 		}
@@ -289,7 +305,7 @@ public class GameplayGUI : MonoBehaviour {
 		
 		if (Input.GetKeyDown("return")) 
 		{
-			surrenderMenu.enabled = false;
+			surrenderMenuenabled = false;
 			
 			if (selection == 0)
 			{
@@ -297,7 +313,7 @@ public class GameplayGUI : MonoBehaviour {
 			}
 			else
 			{
-				pauseMenu.enabled = true;
+				pauseMenuenabled = true;
 			}
 		}
 	}
@@ -322,8 +338,8 @@ public class GameplayGUI : MonoBehaviour {
 		if (Input.GetKeyDown ("return")) 
 		{
 			selection = 0;
-			optionsMenu.enabled = false;
-			pauseMenu.enabled = true;
+			optionsMenuenabled = false;
+			pauseMenuenabled = true;
 		}
 	}
 
@@ -332,8 +348,8 @@ public class GameplayGUI : MonoBehaviour {
 		if (Input.GetKeyDown ("return")) 
 		{
 			selection = 0;
-			helpMenu.enabled = false;
-			pauseMenu.enabled = true;
+			helpMenuenabled = false;
+			pauseMenuenabled = true;
 		}
 	}
 }
