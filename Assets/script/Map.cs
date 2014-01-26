@@ -180,7 +180,7 @@ public class Map : MonoBehaviour {
 		float top =  this.renderer.bounds.center.x - (this.renderer.bounds.extents.x);
 		float left =  this.renderer.bounds.center.y + (this.renderer.bounds.extents.y);
 
-		unit.transform.position = new Vector2(top + pos.x,left - pos.y);
+		unit.transform.position = new Vector3(top + pos.x,left - pos.y, -0.01f);
 
 		return true;
 	}
