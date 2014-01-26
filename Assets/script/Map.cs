@@ -129,7 +129,7 @@ public class Map : MonoBehaviour {
 	public void GenerateLevelTile(Object obj, int levelX, int levelY)
 	{
 		//WORK OUT WHERE ON THE SCREEN TO PLACE THE LEVEL TILE
-		Vector2 pos = this.GetPositionFromTile(levelX*levelFactor,levelY*levelFactor);
+		Vector2 pos = this.GetPositionFromTile((levelX*levelFactor)+(levelFactor/2),(levelY*levelFactor)+(levelFactor/2));
 		//GET BOUNDS
 		float top =  this.renderer.bounds.center.x - (this.renderer.bounds.extents.x);
 		float left =  this.renderer.bounds.center.y + (this.renderer.bounds.extents.y);
@@ -145,7 +145,8 @@ public class Map : MonoBehaviour {
 		//}
 
 		//WORK OUT WHERE ON THE SCREEN TO PLACE THE UNIT
-		Vector2 pos = this.GetPositionFromTile(xTile,yTile);
+		Vector2 pos = this.GetPositionFromTile(xTile+0.5f,yTile+0.5f);
+
 		//GET BOUNDS
 		float top =  this.renderer.bounds.center.x - (this.renderer.bounds.extents.x);
 		float left =  this.renderer.bounds.center.y + (this.renderer.bounds.extents.y);
@@ -155,7 +156,7 @@ public class Map : MonoBehaviour {
 		return true;
 	}
 
-	Vector2 GetPositionFromTile(int xPos, int yPos) {
+	Vector2 GetPositionFromTile(float xPos, float yPos) {
 		float tileWidth, tileHeight;
 		tileWidth = (this.renderer.bounds.extents.x * 2) / sizeX;
 		tileHeight = (this.renderer.bounds.extents.y * 2) / sizeY;
