@@ -23,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -9}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -40,8 +40,82 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guiSkinRed: {fileID: 11400000, guid: a6e282ef46ed06447ae3f75016e2153e, type: 2}
   guiSkinBlue: {fileID: 11400000, guid: 1319135a5b1e391418d8bab70179ca61, type: 2}
+  guiLargeText:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
   GUItype: 0
   pauseMenu: {fileID: 0}
+  pauseRed: {fileID: 21300000, guid: e38da03c6eb7b1b40ac461f62e0e7701, type: 3}
+  pauseBlue: {fileID: 21300000, guid: dfc9561946e7b104ca43affec576f476, type: 3}
+  exitMenu: {fileID: 0}
+  exitRed: {fileID: 21300000, guid: deb952d923d4d7848a0def69e9ac33a3, type: 3}
+  exitBlue: {fileID: 21300000, guid: 89fa4b9db8aa3204e8a224bf03aef331, type: 3}
+  surrenderMenu: {fileID: 0}
+  surrenderRed: {fileID: 21300000, guid: d7160c31d6f976f42b5fd9be803cbbad, type: 3}
+  surrenderBlue: {fileID: 21300000, guid: 450230748fe4c1344996b224d44f5ff9, type: 3}
+  optionsMenu: {fileID: 0}
+  optionsRed: {fileID: 21300000, guid: f02dec23a7d801248aad0cee3252a5f6, type: 3}
+  optionsBlue: {fileID: 21300000, guid: b35d8f7de52e3fd4bba1f16172e40568, type: 3}
+  helpMenu: {fileID: 0}
+  helpRed: {fileID: 21300000, guid: c89f4503b1cdef341a0842f53c955260, type: 3}
+  helpBlue: {fileID: 21300000, guid: 0a15c797aa07f5846aa7f8a694357fd9, type: 3}
+  selection: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

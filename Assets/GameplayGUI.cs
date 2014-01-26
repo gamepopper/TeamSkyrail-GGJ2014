@@ -65,9 +65,9 @@ public class GameplayGUI : MonoBehaviour {
 			pauseMenu.enabled = false;
 		}
 
-		GUI.Box(new Rect(5, Screen.height - 190, 200, 180), "Day Number\n\nWorld Opinion\nPublic Opinion");
-		GUI.Box(new Rect(Screen.width - 205, Screen.height - 190, 200, 180), "Unit Purchase Options");
-		GUI.Box(new Rect(215, Screen.height - 190, Screen.width - 430, 180), "Domination Map Overview");
+		GUI.Box(new Rect(5, Screen.height - 190, 200, 180), ".\nWorld Opinion\n\n\n\nPublic Opinion");
+		GUI.Box(new Rect(Screen.width - 205, Screen.height - 190, 200, 180), ".\nUnit Purchase\nOptions");
+		GUI.Box(new Rect(215, Screen.height - 190, Screen.width - 430, 180), ".\nDomination Map Overview");
 
 		if (pauseMenu.enabled) 
 		{
@@ -137,14 +137,14 @@ public class GameplayGUI : MonoBehaviour {
 			else
 				guiLargeText.normal.textColor = grey;
 			
-			GUI.Label(new Rect(Screen.width/2 - 150, Screen.height/2 + 80, 340, 200), "YES", guiLargeText);
+			GUI.Label(new Rect(Screen.width/2 - 170, Screen.height/2 + 80, 340, 200), "ACCEPT", guiLargeText);
 			
 			if (selection == 1)
 				guiLargeText.normal.textColor = white;
 			else
 				guiLargeText.normal.textColor = grey;
 			
-			GUI.Label(new Rect(Screen.width/2 + 100, Screen.height/2 + 80, 340, 200), "NO", guiLargeText);
+			GUI.Label(new Rect(Screen.width/2 + 10, Screen.height/2 + 80, 340, 200), "DECLINE", guiLargeText);
 		}
 		else if (optionsMenu.enabled)
 		{
