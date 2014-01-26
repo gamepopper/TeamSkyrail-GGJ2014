@@ -15,10 +15,13 @@ public class CameraScript : MonoBehaviour
 	const int STATE_UNZOOMING = 3;
 	int transitionState = STATE_UNZOOMED;
 
+	public Map map;
+
 	bool dragging = false;
 	float dragSpeed = 0.001f;
 
-	Vector3 dragPos;
+	Vector2 dragPos;
+	Vector2 targetCamPos;
 	
 	// Use this for initialization
 	void Start () {
@@ -65,7 +68,9 @@ public class CameraScript : MonoBehaviour
 
 			if (dragging)
 			{
-				camera.transform.Translate ((Input.mousePosition.x - dragPos.x)*dragSpeed, (Input.mousePosition.y - dragPos.y)*dragSpeed, 0);
+				targetCamPos = new Vector2((Input.mousePosition.x - dragPos.x)*dragSpeed, (Input.mousePosition.y - dragPos.y)*dragSpeed);
+
+				camera.transform.Translate(targetCamPos);
 			}
 		}
 	}
