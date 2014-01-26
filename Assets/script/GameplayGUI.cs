@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class GameplayGUI : MonoBehaviour {
@@ -41,8 +42,15 @@ public class GameplayGUI : MonoBehaviour {
 
 	void Start()
 	{
-		GUItype = GameObject.Find("DecisionObject").
-			GetComponent<PersistantScripts>().choice;
+		try
+		{
+			GUItype = GameObject.Find("DecisionObject").
+				GetComponent<PersistantScripts>().choice;
+		}
+		catch (NullReferenceException e)
+		{
+			GUItype = 0;
+		}
 	}
 
 	void OnGUI()
@@ -71,6 +79,9 @@ public class GameplayGUI : MonoBehaviour {
 			//Pause Action
 			pauseMenuenabled = !pauseMenuenabled;
 			exitMenuenabled = false;
+			surrenderMenuenabled = false;
+			optionsMenuenabled = false;
+			helpMenuenabled = false;
 		}
 
 		if (GUI.Button(new Rect(Screen.width - 130, 10, 120, 40), "END")) 
@@ -78,6 +89,9 @@ public class GameplayGUI : MonoBehaviour {
 			//End Action
 			exitMenuenabled = !exitMenuenabled;
 			pauseMenuenabled = false;
+			surrenderMenuenabled = false;
+			optionsMenuenabled = false;
+			helpMenuenabled = false;
 		}
 
 		GUI.Box(new Rect(5, Screen.height - 190, 200, 180), ".\nWorld Opinion\n\n\n\nPublic Opinion");
@@ -185,14 +199,20 @@ public class GameplayGUI : MonoBehaviour {
 			guiLargeText.fontSize = 36;
 			
 			if (selection == 0)
+			{
 				guiLargeText.normal.textColor = white;
+				GUI.Label(new Rect(Screen.width/2 - 170, Screen.height/2, 200, 150), "You take the route of a coward?");
+			}
 			else
 				guiLargeText.normal.textColor = grey;
 			
 			GUI.Label(new Rect(Screen.width/2 - 170, Screen.height/2 + 80, 340, 200), "ACCEPT", guiLargeText);
 			
 			if (selection == 1)
+			{
 				guiLargeText.normal.textColor = white;
+				GUI.Label(new Rect(Screen.width/2 - 170, Screen.height/2, 200, 150), "Do you take a stand?");
+			}
 			else
 				guiLargeText.normal.textColor = grey;
 			
@@ -347,7 +367,9 @@ public class GameplayGUI : MonoBehaviour {
 			
 			if (selection == 0)
 			{
-				Application.LoadLevel("Title");
+				GameObject.Find("DecisionObject").
+					GetComponent<PersistantScripts>().choice = (GUItype + 1) % 2;
+				Application.LoadLevel("GameOver");
 			}
 			else
 			{

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -25,10 +26,17 @@ public class SplashFadeManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
 		if (current < pages.Count) {
-			if (pages[current].IsFadeOutStart())
+			try
 			{
-				current++;
-				pages[current].StartFade = true;
+				if (pages[current].IsFadeOutStart())
+				{
+					current++;
+					pages[current].StartFade = true;
+				}
+			}
+			catch (ArgumentOutOfRangeException aore)
+			{
+				End = true;
 			}
 		}
 		else
