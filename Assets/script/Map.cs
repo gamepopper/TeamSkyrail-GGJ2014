@@ -60,18 +60,21 @@ public class Map : MonoBehaviour {
             string txt = reader.ReadLine();
             while (txt != null)
             {
-                for (x = 0; x < txt.Length; x++)
+                for (x = 0; x < (txt.Length); x+=2)
                 {
-                    if (txt.Substring(x, 1).Equals("A"))
-                    {
-                        levelTiles[x, y] = new OrbTile();
-                    }
-                    else if (txt.Substring(x, 1).Equals("B"))
-                    {
-                        levelTiles[x, y] = new BuildingTile();
+					switch(txt.Substring(x, 1))
+					{
+					case "A":
+						levelTiles[x, y] = new OrbTile();
+						break;
+					case "B":
+						levelTiles[x, y] = new BuildingTile();
+						break;
                     }
 
-					GenerateLevelTile(levelTiles[x,y].getObj(), x, y);
+					// Rotation number follows the tile letter in the level file.  0, 1, 2 or 3 denote number of clockwise 90 degree rotations.
+					GenerateLevelTile(levelTiles[x,y].getObj(), x, y, txt.ToCharArray()[x+1]);	// The ASCII code for 0 starts on a multiple of 4 and so the
+																								// ASCII code does not need adjusting.
                 }
 
                 y++;
@@ -126,15 +129,18 @@ public class Map : MonoBehaviour {
 		}
 	}
 
-	public void GenerateLevelTile(Object obj, int levelX, int levelY)
+	public void GenerateLevelTile(Object obj, int levelX, int levelY, int rotationNum)
 	{
+		// Anything more than 4 is redundant.
+		rotationNum %= 4;
+
 		//WORK OUT WHERE ON THE SCREEN TO PLACE THE LEVEL TILE
 		Vector2 pos = this.GetPositionFromTile((levelX*levelFactor)+(levelFactor/2),(levelY*levelFactor)+(levelFactor/2));
 		//GET BOUNDS
 		float top =  this.renderer.bounds.center.x - (this.renderer.bounds.extents.x);
 		float left =  this.renderer.bounds.center.y + (this.renderer.bounds.extents.y);
 		
-		//Instantiate(obj, new Vector3(top + pos.x,left - pos.y, 0), Quaternion.AngleAxis(90, Vector3.left));
+		Instantiate(obj, new Vector3(top + pos.x,left - pos.y, 0), Quaternion.AngleAxis (90, Vector3.left) * Quaternion.AngleAxis (90*rotationNum, Vector3.up));
 	}
 
 	public bool PlaceUnit(Unit unit, int xTile, int yTile) {
