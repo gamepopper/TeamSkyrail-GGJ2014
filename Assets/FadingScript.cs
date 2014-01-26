@@ -18,17 +18,24 @@ public class FadingScript : MonoBehaviour {
 	// Use this for initialization
 	void Start() 
 	{
-		colorData = gameObject.renderer.material.color;
+		Reset();
+	}
 
+	public void Reset()
+	{
+		colorData = gameObject.renderer.material.color;
+		
 		if (FadeIn) 
 		{
 			colorData.a = 0;
-			setColor (colorData);
+			setColor(colorData);
 		} 
 		else 
 		{
 			fadeInComplete = true;
 		}
+
+		elapsed = 0;
 	}
 
 	private void setColor(Color c)
