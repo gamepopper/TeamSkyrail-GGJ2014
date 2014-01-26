@@ -20,6 +20,11 @@ public class Map : MonoBehaviour {
 
 	List<Unit> unitList = new List<Unit>();
 
+    public float getWorldOpinion()
+    {
+        return this.worldOpinion;
+    }
+
     public void EndTurn() {
         curPlayer++;
         if(curPlayer > 1) {
