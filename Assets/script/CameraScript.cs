@@ -3,8 +3,9 @@ using System.Collections;
 
 public class CameraScript : MonoBehaviour
 {
-	Vector3 overviewPos = new Vector3(4.606995f, 0, -11.62317f);
-	Vector3 closePos = new Vector3(4.606995f, 0, -3);
+	Vector3 overCamPos = new Vector3(4.606995f, 0, -11.62317f);
+	Vector3 closeCamPos = new Vector3(4.606995f, 0, -3);
+	Vector3 moveCamPos;
 	float transitionTime = 0.3f;
 	float timeCount = 0;
 	float fraction = 0;
@@ -13,6 +14,11 @@ public class CameraScript : MonoBehaviour
 	const int STATE_ZOOMED = 2;
 	const int STATE_UNZOOMING = 3;
 	int transitionState = STATE_UNZOOMED;
+
+	bool dragging = false;
+	float dragSpeed = 0.001f;
+
+	Vector3 dragPos;
 	
 	// Use this for initialization
 	void Start () {
@@ -34,12 +40,33 @@ public class CameraScript : MonoBehaviour
 
 		if (transitionState == STATE_ZOOMING)
 		{
-			interpCamera (overviewPos, closePos);
+			interpCamera (overCamPos, closeCamPos);
 		}
 
 		if (transitionState == STATE_UNZOOMING)
 		{
-			interpCamera (closePos, overviewPos);
+			interpCamera (moveCamPos, overCamPos);
+		}
+
+		if (transitionState == STATE_ZOOMED)
+		{
+			if (Input.GetKeyDown(KeyCode.Mouse1))
+			{
+				dragPos = Input.mousePosition;
+				dragging = true;
+			}
+
+			if (Input.GetKeyUp(KeyCode.Mouse1))
+			{
+				dragging = false;
+
+				moveCamPos = camera.transform.position;
+			}
+
+			if (dragging)
+			{
+				camera.transform.Translate ((Input.mousePosition.x - dragPos.x)*dragSpeed, (Input.mousePosition.y - dragPos.y)*dragSpeed, 0);
+			}
 		}
 	}
 
@@ -55,6 +82,8 @@ public class CameraScript : MonoBehaviour
 			timeCount = 0;
 			camera.transform.position = end;
 			transitionState++;
+
+			moveCamPos = camera.transform.position;		// Otherwise zooming out from the default zoom in position will jump to a previous moved position.
 		}
 		else
 		{
