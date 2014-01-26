@@ -4,8 +4,8 @@ using System.Collections;
 public class MenuSelect : MonoBehaviour {
 	public int Selection = 0;
 
-	public GameObject FastSelectBlue;
-	public GameObject FastSelectRed;
+	public GameObject FactSelectBlue;
+	public GameObject FactSelectRed;
 
 	Vector3 prevMousePosition = new Vector3();
 
@@ -13,14 +13,14 @@ public class MenuSelect : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
-		Color blueColour = FastSelectBlue.GetComponent<SpriteRenderer>().color;
-		Color redColour = FastSelectRed.GetComponent<SpriteRenderer>().color;
+		Color blueColour = FactSelectBlue.GetComponent<SpriteRenderer>().color;
+		Color redColour = FactSelectRed.GetComponent<SpriteRenderer>().color;
 
 		blueColour.a = 0;
 		redColour.a = 0;
 
-		FastSelectBlue.GetComponent<SpriteRenderer>().color = blueColour;
-		FastSelectRed.GetComponent<SpriteRenderer>().color = redColour;
+		FactSelectBlue.GetComponent<SpriteRenderer>().color = blueColour;
+		FactSelectRed.GetComponent<SpriteRenderer>().color = redColour;
 	}
 	
 	// Update is called once per frame
@@ -45,8 +45,8 @@ public class MenuSelect : MonoBehaviour {
 	{
 		useMouse = !(prevMousePosition == Input.mousePosition);
 		
-		Color blueColour = FastSelectBlue.GetComponent<SpriteRenderer>().color;
-		Color redColour = FastSelectRed.GetComponent<SpriteRenderer>().color;
+		Color blueColour = FactSelectBlue.GetComponent<SpriteRenderer>().color;
+		Color redColour = FactSelectRed.GetComponent<SpriteRenderer>().color;
 		
 		if (Input.GetKey("left") || (useMouse && Input.mousePosition.x < Screen.width/2)) 
 		{
@@ -61,16 +61,6 @@ public class MenuSelect : MonoBehaviour {
 		
 		if (Selection == 1) 
 		{
-			blueColour.a += Time.deltaTime * 5;
-			redColour.a -= Time.deltaTime * 5;
-			
-			if (blueColour.a > 1)
-				blueColour.a = 1;
-			if (redColour.a < 0)
-				redColour.a = 0;
-		} 
-		else if (Selection == 2) 
-		{
 			blueColour.a -= Time.deltaTime * 5;
 			redColour.a += Time.deltaTime * 5;
 			
@@ -78,10 +68,20 @@ public class MenuSelect : MonoBehaviour {
 				redColour.a = 1;
 			if (blueColour.a < 0)
 				blueColour.a = 0;
+		} 
+		else if (Selection == 2) 
+		{
+			blueColour.a += Time.deltaTime * 5;
+			redColour.a -= Time.deltaTime * 5;
+			
+			if (blueColour.a > 1)
+				blueColour.a = 1;
+			if (redColour.a < 0)
+				redColour.a = 0;
 		}
-		
-		FastSelectBlue.GetComponent<SpriteRenderer>().color = blueColour;
-		FastSelectRed.GetComponent<SpriteRenderer>().color = redColour;
+
+		FactSelectBlue.GetComponent<SpriteRenderer>().color = blueColour;
+		FactSelectRed.GetComponent<SpriteRenderer>().color = redColour;
 		
 		prevMousePosition = Input.mousePosition;
 	}
