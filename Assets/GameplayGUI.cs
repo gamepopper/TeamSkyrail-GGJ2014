@@ -5,6 +5,7 @@ public class GameplayGUI : MonoBehaviour {
 
 	public GUISkin guiSkinRed;
 	public GUISkin guiSkinBlue;
+	public GUIStyle guiLargeText;
 	public int GUItype = 0;
 
 	public SpriteRenderer pauseMenu;
@@ -55,7 +56,6 @@ public class GameplayGUI : MonoBehaviour {
 			//Pause Action
 			pauseMenu.enabled = !pauseMenu.enabled;
 			exitMenu.enabled = false;
-
 		}
 
 		if (GUI.Button(new Rect(Screen.width - 130, 10, 120, 40), "END")) 
@@ -68,7 +68,6 @@ public class GameplayGUI : MonoBehaviour {
 		GUI.Box(new Rect(5, Screen.height - 190, 200, 180), "Day Number\n\nWorld Opinion\nPublic Opinion");
 		GUI.Box(new Rect(Screen.width - 205, Screen.height - 190, 200, 180), "Unit Purchase Options");
 		GUI.Box(new Rect(215, Screen.height - 190, Screen.width - 430, 180), "Domination Map Overview");
-<<<<<<< HEAD
 
 		if (pauseMenu.enabled) 
 		{
@@ -158,8 +157,6 @@ public class GameplayGUI : MonoBehaviour {
 			GUI.TextArea(new Rect(Screen.width/2 - 180, Screen.height/2 - 70, 360, 430), 
 			             "OH MY GOD! PLEASE HELP ME I'M STUCK IN HERE AND I ONLY HAVE 11 HOURS TO FINISH THIS GAME!!!", guiLargeText); 
 		}
-=======
->>>>>>> parent of 2b43b60... Pause and Exit Menu implemented
 	}
 
 	void Update()
@@ -192,19 +189,24 @@ public class GameplayGUI : MonoBehaviour {
 
 	void ExitMenuInput()
 	{
-		if (Input.GetKeyDown ("up")) 
+		if (Input.GetKeyDown ("left")) 
 		{
 			selection--;
 
 			if (selection < 0) 
 			{
-				selection += 2;
+				selection = 0;
 			}
 		}
 
-		if (Input.GetKeyDown("down")) 
+		if (Input.GetKeyDown("right")) 
 		{
-			selection = (selection + 1) % 2;
+			selection++;
+
+			if (selection > 1)
+			{
+				selection = 1;
+			}
 		}
 
 		if (Input.GetKeyDown("return")) 
