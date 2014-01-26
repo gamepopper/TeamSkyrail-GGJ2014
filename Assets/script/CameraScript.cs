@@ -4,8 +4,8 @@ using System.Collections;
 public class CameraScript : MonoBehaviour
 {
 	Vector3 overviewPos = new Vector3(4.606995f, 0, -11.62317f);
-	Vector3 closePos = new Vector3(4.606995f, 0, -5);
-	float transitionTime = 0.5f;
+	Vector3 closePos = new Vector3(4.606995f, 0, -3);
+	float transitionTime = 0.3f;
 	float timeCount = 0;
 	float fraction = 0;
 	const int STATE_UNZOOMED = 0;
@@ -24,7 +24,7 @@ public class CameraScript : MonoBehaviour
 	{
 		if (transitionState > 3)
 		{
-			transitionState = 0;
+			transitionState = STATE_UNZOOMED;
 		}
 
 		if (Input.GetKeyDown(KeyCode.Space) && (transitionState % 2 != 1))	// Not true if zooming/unzooming.
@@ -52,12 +52,15 @@ public class CameraScript : MonoBehaviour
 		
 		if (timeCount >= transitionTime)	// If true, interpolation is done.
 		{
-			timeCount = transitionTime;
+			timeCount = 0;
+			camera.transform.position = end;
 			transitionState++;
 		}
-				
-		fraction = timeCount/transitionTime;
-		camera.transform.position = Vector3.Lerp (start, end, ((Mathf.Cos ((fraction*Mathf.PI)-Mathf.PI)+1)/2));	// Smooth accelerative interpolation.
+		else
+		{
+			fraction = timeCount/transitionTime;
+			camera.transform.position = Vector3.Lerp (start, end, ((Mathf.Cos ((fraction*Mathf.PI)-Mathf.PI)+1)/2));	// Smooth accelerative interpolation.
+		}
 	}
 }
 	
