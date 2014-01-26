@@ -5,7 +5,7 @@ using System.Collections;
 
 public class Unit : MonoBehaviour {
 
-    public Player[] players = new Player[2];
+    public Player owner;
 
 
 	public Map map;
@@ -16,8 +16,10 @@ public class Unit : MonoBehaviour {
 
 	int currentHp;
 	public int maxHp = 100;
-    public int range;                       //RANGE OF EACH UNIT
-    public int speed;                       //HOW MANY TURNS THIS UNIT CAN MOVE PER TURN
+    public int range;                    //RANGE OF EACH UNIT
+    public int speed;                    //HOW MANY TURNS THIS UNIT CAN MOVE PER TURN
+    public int facing;                   //THE DIRECTION THE UNIT IS FACING
+    private int _turnsLeft;              //AMOUNT OF TURNS LEFT
 
     void setupSprites()
     {
@@ -63,6 +65,17 @@ public class Unit : MonoBehaviour {
 
     void Damage(Unit target) {
 
+    }
+
+    bool MoveTo(int x, int y) {
+        int xd = x - this.xPos;
+        int yd = y - this.yPos;
+
+        float distance = Mathf.Sqrt(xd * xd + yd * yd);
+        if (distance > this.speed) {
+            return false;
+        }
+        return true;
     }
 
 	// Use this for initialization

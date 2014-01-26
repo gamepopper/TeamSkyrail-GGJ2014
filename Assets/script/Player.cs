@@ -1,17 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class Player {
 
-	float publicOpinion = 0.5f;				//DETERMINES HOW FAST RESOURCES
+    Faction playerFaction;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public void SetFaction(Faction faction) {
+        this.playerFaction = faction;
+    }
 }

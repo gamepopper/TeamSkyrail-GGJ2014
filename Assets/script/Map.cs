@@ -6,6 +6,12 @@ using System.IO;
 public class Map : MonoBehaviour {
 	float worldOpinion = 0.5f;				//IF REACHES 0, THEN EL PRESEDENTE LOSES
 
+
+    protected int turn;
+    
+    protected Player[] players;
+    protected int curPlayer;
+
 	public int sizeX;
 	public int sizeY;
     public float tileSpacing;
@@ -16,8 +22,21 @@ public class Map : MonoBehaviour {
 
 	List<Unit> unitList = new List<Unit>();
 
-    void Awake() {
+    public void EndTurn() {
+        curPlayer++;
+        if(curPlayer > 1) {
+            curPlayer = 0;
+        }
+    }
 
+    void Awake() {
+        players = new Player[2];
+        players[0] = new Player();
+        players[1] = new Player();
+    }
+
+    public Player GetCurPlayer() {
+        return this.players[this.curPlayer];
     }
 
     // Use this for initialization
@@ -106,12 +125,26 @@ public class Map : MonoBehaviour {
 		}
 	}
 
+    public bool PlaceObject(GameObject curObj, int xTile, int yTile)
+    {
+
+        //WORK OUT WHERE ON THE SCREEN TO PLACE THE UNIT
+        Vector2 pos = this.GetPositionFromTile(xTile, yTile);
+        //GET BOUNDS
+        float top = this.renderer.bounds.center.x - (this.renderer.bounds.extents.x);
+        float left = this.renderer.bounds.center.y + (this.renderer.bounds.extents.y);
+
+        curObj.transform.position = new Vector2(top + pos.x, left - pos.y);
+
+        return true;
+    }
+
 	public bool PlaceUnit(Unit unit, int xTile, int yTile) {
 		//DERMINE BY 
         //Debug.Log("Attempting to position unit @ " + xTile + ", " + yTile);
-		if(!this.tiles[xTile,yTile].canPlaceHere(unit.gameObject)) {
-			return false;
-		}
+		//if(!this.tiles[xTile,yTile].canPlaceHere(unit.gameObject)) {
+		//	return false;
+		//}
 
 		//WORK OUT WHERE ON THE SCREEN TO PLACE THE UNIT
 		Vector2 pos = this.GetPositionFromTile(xTile,yTile);
