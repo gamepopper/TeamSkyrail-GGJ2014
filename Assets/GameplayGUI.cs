@@ -16,6 +16,18 @@ public class GameplayGUI : MonoBehaviour {
 	public Sprite exitRed;
 	public Sprite exitBlue;
 
+	public SpriteRenderer surrenderMenu;
+	public Sprite surrenderRed;
+	public Sprite surrenderBlue;
+
+	public SpriteRenderer optionsMenu;
+	public Sprite optionsRed;
+	public Sprite optionsBlue;
+
+	public SpriteRenderer helpMenu;
+	public Sprite helpRed;
+	public Sprite helpBlue;
+
 	public int selection = 0;
 
 	void OnGUI()
@@ -25,12 +37,18 @@ public class GameplayGUI : MonoBehaviour {
 			GUI.skin = guiSkinRed;
 			pauseMenu.sprite = pauseRed;
 			exitMenu.sprite = exitRed;
+			surrenderMenu.sprite = surrenderRed;
+			optionsMenu.sprite = optionsRed;
+			helpMenu.sprite = helpRed;
 		} 
 		else 
 		{
 			GUI.skin = guiSkinBlue;
 			pauseMenu.sprite = pauseBlue;
 			exitMenu.sprite = exitBlue;
+			surrenderMenu.sprite = surrenderBlue;
+			optionsMenu.sprite = optionsBlue;
+			helpMenu.sprite = helpBlue;
 		}
 
 		if (GUI.Button(new Rect(10, 10, 120, 40), "PAUSE")) 
@@ -86,8 +104,7 @@ public class GameplayGUI : MonoBehaviour {
 
 			GUI.Label(new Rect(Screen.width/2 - 90, Screen.height/2 + 90, 340, 200), "END", guiLargeText);
 		}
-
-		if (exitMenu.enabled) 
+		else if (exitMenu.enabled) 
 		{
 			Color grey = new Color(0.7f, 0.7f, 0.7f, 1f);
 			Color white = new Color(1,1,1,1);
@@ -108,6 +125,38 @@ public class GameplayGUI : MonoBehaviour {
 			
 			GUI.Label(new Rect(Screen.width/2 + 20, Screen.height/2 + 80, 340, 200), "RETURN", guiLargeText);
 		}
+		else if (surrenderMenu.enabled) 
+		{
+			Color grey = new Color(0.7f, 0.7f, 0.7f, 1f);
+			Color white = new Color(1,1,1,1);
+			
+			guiLargeText.fontSize = 36;
+			
+			if (selection == 0)
+				guiLargeText.normal.textColor = white;
+			else
+				guiLargeText.normal.textColor = grey;
+			
+			GUI.Label(new Rect(Screen.width/2 - 150, Screen.height/2 + 80, 340, 200), "YES", guiLargeText);
+			
+			if (selection == 1)
+				guiLargeText.normal.textColor = white;
+			else
+				guiLargeText.normal.textColor = grey;
+			
+			GUI.Label(new Rect(Screen.width/2 + 100, Screen.height/2 + 80, 340, 200), "NO", guiLargeText);
+		}
+		else if (optionsMenu.enabled)
+		{
+			//Add gui stuff here!!!
+		}
+		else if (helpMenu.enabled)
+		{
+			guiLargeText.fontSize = 24;
+			guiLargeText.wordWrap = true;
+			GUI.TextArea(new Rect(Screen.width/2 - 180, Screen.height/2 - 70, 360, 430), 
+			             "OH MY GOD! PLEASE HELP ME I'M STUCK IN HERE AND I ONLY HAVE 11 HOURS TO FINISH THIS GAME!!!", guiLargeText); 
+		}
 	}
 
 	void Update()
@@ -119,6 +168,18 @@ public class GameplayGUI : MonoBehaviour {
 		else if (pauseMenu.enabled) 
 		{
 			PauseMenuInput();
+		}
+		else if (surrenderMenu.enabled)
+		{
+			SurrenderMenuInput();
+		}
+		else if (optionsMenu.enabled)
+		{
+			OptionsMenuInput();
+		}
+		else if (helpMenu.enabled)
+		{
+			HelpMenuInput();
 		}
 		else 
 		{
@@ -147,6 +208,16 @@ public class GameplayGUI : MonoBehaviour {
 				selection = 1;
 			}
 		}
+
+		if (Input.GetKeyDown("return")) 
+		{
+			exitMenu.enabled = false;
+
+			if (selection == 0)
+			{
+				Application.LoadLevel("Title");
+			}
+		}
 	}
 
 	void PauseMenuInput()
@@ -164,6 +235,105 @@ public class GameplayGUI : MonoBehaviour {
 		if (Input.GetKeyDown("down")) 
 		{
 			selection = (selection + 1) % 4;
+		}
+		
+		if (Input.GetKeyDown ("return")) 
+		{
+			switch (selection)
+			{
+			case 0:
+				selection = 0;
+				pauseMenu.enabled = false;
+				optionsMenu.enabled = true;
+				break;
+			case 1:
+				selection = 0;
+				pauseMenu.enabled = false;
+				helpMenu.enabled = true;
+				break;
+			case 2:
+				selection = 0;
+				pauseMenu.enabled = false;
+				surrenderMenu.enabled = true;
+				break;
+			case 3:
+				selection = 0;
+				pauseMenu.enabled = false;
+				exitMenu.enabled = true;
+				break;
+			}
+		}
+	}
+
+	void SurrenderMenuInput()
+	{
+		if (Input.GetKeyDown ("left")) 
+		{
+			selection--;
+			
+			if (selection < 0) 
+			{
+				selection = 0;
+			}
+		}
+		
+		if (Input.GetKeyDown("right")) 
+		{
+			selection++;
+			
+			if (selection > 1)
+			{
+				selection = 1;
+			}
+		}
+		
+		if (Input.GetKeyDown("return")) 
+		{
+			surrenderMenu.enabled = false;
+			
+			if (selection == 0)
+			{
+				Application.LoadLevel("Title");
+			}
+			else
+			{
+				pauseMenu.enabled = true;
+			}
+		}
+	}
+
+	void OptionsMenuInput()
+	{
+		if (Input.GetKeyDown ("up")) 
+		{
+			selection--;
+			
+			if (selection < 0) 
+			{
+				selection += 4;
+			}
+		}
+		
+		if (Input.GetKeyDown("down")) 
+		{
+			selection = (selection + 1) % 4;
+		}
+		
+		if (Input.GetKeyDown ("return")) 
+		{
+			selection = 0;
+			optionsMenu.enabled = false;
+			pauseMenu.enabled = true;
+		}
+	}
+
+	void HelpMenuInput()
+	{
+		if (Input.GetKeyDown ("return")) 
+		{
+			selection = 0;
+			helpMenu.enabled = false;
+			pauseMenu.enabled = true;
 		}
 	}
 }
