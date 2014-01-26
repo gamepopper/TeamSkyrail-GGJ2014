@@ -304,7 +304,7 @@ MonoBehaviour:
   StartFade: 0
   FadeIn: 1
   FadeOut: 1
-  Delay: 3
+  Delay: 8
   FadeSpeed: 2
 --- !u!212 &876879647
 SpriteRenderer:
@@ -512,7 +512,7 @@ MonoBehaviour:
   StartFade: 0
   FadeIn: 1
   FadeOut: 1
-  Delay: 3
+  Delay: 8
   FadeSpeed: 2
 --- !u!212 &1847491280
 SpriteRenderer:

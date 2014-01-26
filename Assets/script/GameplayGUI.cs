@@ -39,6 +39,12 @@ public class GameplayGUI : MonoBehaviour {
 	private float originalHeight = 1080.0f; // you used to create the GUI contents
 	private Vector3 scale;
 
+	void Start()
+	{
+		GUItype = GameObject.Find("DecisionObject").
+			GetComponent<PersistantScripts>().choice;
+	}
+
 	void OnGUI()
 	{
 		if (GUItype == 0) 
@@ -75,6 +81,38 @@ public class GameplayGUI : MonoBehaviour {
 		}
 
 		GUI.Box(new Rect(5, Screen.height - 190, 200, 180), ".\nWorld Opinion\n\n\n\nPublic Opinion");
+
+		float worldOpvalue = GameObject.Find("city1").GetComponent<Map>().getWorldOpinion();
+
+		string worldOpText = "";
+
+		if (worldOpvalue < 0.2f)
+		{
+			worldOpText = "Everything is A-OK!";
+		}
+		else if (worldOpvalue < 0.4f)
+		{
+			worldOpText = "There's a storm coming.";
+		}
+		else if (worldOpvalue < 0.6f)
+		{
+			worldOpText = "Could be worse.";
+		}
+		else if (worldOpvalue < 0.8f)
+		{
+			worldOpText = "Something must be done!";
+		}
+		else if (worldOpvalue < 1f)
+		{
+			worldOpText = "OH DEAR GOD THE HUMANITY!";
+		}
+		else
+		{
+
+		}
+
+		GUI.Label(new Rect(30, Screen.height - 150, 200, 150), worldOpText);
+
 		GUI.Box(new Rect(Screen.width - 205, Screen.height - 190, 200, 180), ".\nUnit Purchase\nOptions");
 		GUI.Box(new Rect(215, Screen.height - 190, Screen.width - 430, 180), ".\nDomination Map Overview");
 
@@ -171,7 +209,7 @@ public class GameplayGUI : MonoBehaviour {
 			guiLargeText.fontSize = 24;
 			guiLargeText.wordWrap = true;
 			GUI.TextArea(new Rect(Screen.width/2 - 180, Screen.height/2 - 70, 360, 430), 
-			             "OH MY GOD! PLEASE HELP ME I'M STUCK IN HERE AND I ONLY HAVE 11 HOURS TO FINISH THIS GAME!!!", guiLargeText); 
+			             "OH MY GOD! PLEASE HELP ME I'M STUCK IN HERE AND I ONLY HAVE 6 HOURS TO FINISH THIS GAME!!!", guiLargeText); 
 		}
 	}
 
