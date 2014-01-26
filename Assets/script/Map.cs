@@ -6,6 +6,9 @@ using System.IO;
 public class Map : MonoBehaviour {
 	float worldOpinion = 0.5f;				//IF REACHES 0, THEN EL PRESEDENTE LOSES
 
+    //STATES RELATED TO INTERACTING WITH THE MAP
+    bool isCreatingUnit = false;
+    bool isSelectingMovement = false;
 
     protected int turn;
     
@@ -102,6 +105,12 @@ public class Map : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("Clicked - figuring out if clicked object");
