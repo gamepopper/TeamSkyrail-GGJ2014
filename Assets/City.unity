@@ -1185,6 +1185,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guiSkinRed: {fileID: 11400000, guid: a6e282ef46ed06447ae3f75016e2153e, type: 2}
   guiSkinBlue: {fileID: 11400000, guid: 1319135a5b1e391418d8bab70179ca61, type: 2}
+  guiLargeText:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
   GUItype: 0
   pauseMenu: {fileID: 1470765452}
   pauseRed: {fileID: 21300000, guid: e38da03c6eb7b1b40ac461f62e0e7701, type: 3}
@@ -1192,6 +1251,15 @@ MonoBehaviour:
   exitMenu: {fileID: 31677631}
   exitRed: {fileID: 21300000, guid: deb952d923d4d7848a0def69e9ac33a3, type: 3}
   exitBlue: {fileID: 21300000, guid: 89fa4b9db8aa3204e8a224bf03aef331, type: 3}
+  surrenderMenu: {fileID: 0}
+  surrenderRed: {fileID: 0}
+  surrenderBlue: {fileID: 0}
+  optionsMenu: {fileID: 0}
+  optionsRed: {fileID: 0}
+  optionsBlue: {fileID: 0}
+  helpMenu: {fileID: 0}
+  helpRed: {fileID: 0}
+  helpBlue: {fileID: 0}
   selection: 0
 --- !u!4 &393095591
 Transform:

@@ -60,9 +60,9 @@ public class Map : MonoBehaviour {
             string txt = reader.ReadLine();
             while (txt != null)
             {
-                for (x = 0; x < (txt.Length); x+=2)
+                for (x = 0; x < (txt.Length/2); x++)	// 2 characters oer levelTile data.
                 {
-					switch(txt.Substring(x, 1))
+					switch(txt.Substring(2*x, 1))
 					{
 					case "A":
 						levelTiles[x, y] = new OrbTile();
@@ -73,7 +73,7 @@ public class Map : MonoBehaviour {
                     }
 
 					// Rotation number follows the tile letter in the level file.  0, 1, 2 or 3 denote number of clockwise 90 degree rotations.
-					GenerateLevelTile(levelTiles[x,y].getObj(), x, y, txt.ToCharArray()[x+1]);	// The ASCII code for 0 starts on a multiple of 4 and so the
+					GenerateLevelTile(levelTiles[x,y].getObj(), x, y, txt.ToCharArray()[(2*x)+1]);	// The ASCII code for 0 starts on a multiple of 4 and so the
 																								// ASCII code does not need adjusting.
                 }
 
