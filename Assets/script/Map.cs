@@ -73,7 +73,7 @@ public class Map : MonoBehaviour {
                     }
 
 					// Rotation number follows the tile letter in the level file.  0, 1, 2 or 3 denote number of clockwise 90 degree rotations.
-					GenerateLevelTile(levelTiles[x,y].getObj(), x, y, txt.ToCharArray()[(2*x)+1]);	// The ASCII code for 0 starts on a multiple of 4 and so the
+					//GenerateLevelTile(levelTiles[x,y].getObj(), x, y, txt.ToCharArray()[(2*x)+1]);	// The ASCII code for 0 starts on a multiple of 4 and so the
 																								// ASCII code does not need adjusting.
                 }
 
@@ -107,7 +107,7 @@ public class Map : MonoBehaviour {
             {
                 hitObject = hit.collider.gameObject;
                 Map objectMap = GetComponent<Map>();
-                //Debug.Log(objectMap.GetInstanceID() + " ---- " + this.GetInstanceID());
+                Debug.Log(objectMap.GetInstanceID() + " ---- " + this.GetInstanceID());
                 if (objectMap.GetInstanceID() == this.GetInstanceID())
                 {
                     Vector3 translatedPoint = hit.point;
@@ -116,8 +116,8 @@ public class Map : MonoBehaviour {
                     translatedPoint.y += this.transform.position.y - this.renderer.bounds.extents.y;
 
                     translatedPoint.y *= -1;
-
-                    Debug.Log(translatedPoint);
+                    Vector2 tilePos = GetTilePosFromPos(translatedPoint.x, translatedPoint.y);
+                    Debug.Log("Tile: " + tilePos);
                 }
             }
         }
