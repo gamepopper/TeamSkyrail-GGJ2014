@@ -3950,6 +3950,7 @@ MonoBehaviour:
   sizeX: 128
   sizeY: 64
   levelFactor: 8
+  selectedTile: {x: -1, y: -1}
 --- !u!65 &1131343026
 BoxCollider:
   m_ObjectHideFlags: 0

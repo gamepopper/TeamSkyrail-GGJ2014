@@ -21,6 +21,8 @@ public class Map : MonoBehaviour {
 
 	private LevelTile[,] levelTiles;
 
+	public Vector2 selectedTile = new Vector2(-1, -1);	// Defaults to (-1, -1) so that no selection can be differentiated from (0, 0) selection.
+
 	List<Unit> unitList = new List<Unit>();
 
     public float getWorldOpinion()
@@ -113,28 +115,33 @@ public class Map : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Clicked - figuring out if clicked object");
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            GameObject hitObject;
-            if (Physics.Raycast(ray, out hit))
-            {
-                hitObject = hit.collider.gameObject;
-                Map objectMap = GetComponent<Map>();
-                Debug.Log(objectMap.GetInstanceID() + " ---- " + this.GetInstanceID());
-                if (objectMap.GetInstanceID() == this.GetInstanceID())
-                {
-                    Vector3 translatedPoint = hit.point;
+			SelectClicked();
+		}
+	}
 
-                    translatedPoint.x -= this.transform.position.x - this.renderer.bounds.extents.x;
-                    translatedPoint.y += this.transform.position.y - this.renderer.bounds.extents.y;
-
-                    translatedPoint.y *= -1;
-                    Vector2 tilePos = GetTilePosFromPos(translatedPoint.x, translatedPoint.y);
-                    Debug.Log("Tile: " + tilePos);
-                }
-            }
-        }
+	public void SelectClicked()
+	{
+		Debug.Log("Clicked - figuring out if clicked object");
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		RaycastHit hit;
+		GameObject hitObject;
+		if (Physics.Raycast(ray, out hit))
+		{
+			hitObject = hit.collider.gameObject;
+			Map objectMap = GetComponent<Map>();
+			Debug.Log(objectMap.GetInstanceID() + " ---- " + this.GetInstanceID());
+			if (objectMap.GetInstanceID() == this.GetInstanceID())
+			{
+				Vector3 translatedPoint = hit.point;
+				
+				translatedPoint.x -= this.transform.position.x - this.renderer.bounds.extents.x;
+				translatedPoint.y += this.transform.position.y - this.renderer.bounds.extents.y;
+				
+				translatedPoint.y *= -1;
+				selectedTile = GetTilePosFromPos(translatedPoint.x, translatedPoint.y);
+				Debug.Log("Tile: " + selectedTile);
+			}
+		}
 	}
 
 	int findIndex(Unit unit) {
@@ -174,10 +181,8 @@ public class Map : MonoBehaviour {
 		//WORK OUT WHERE ON THE SCREEN TO PLACE THE LEVEL TILE
 		Vector2 pos = this.GetPositionFromTile((levelX*levelFactor)+(levelFactor/2),(levelY*levelFactor)+(levelFactor/2));
 		//GET BOUNDS
-		float top =  this.renderer.bounds.center.x - (this.renderer.bounds.extents.x);
-		float left =  this.renderer.bounds.center.y + (this.renderer.bounds.extents.y);
 		
-		Instantiate(obj, new Vector3(top + pos.x,left - pos.y, 0), Quaternion.AngleAxis (90, Vector3.left) * Quaternion.AngleAxis (90*rotationNum, Vector3.up));
+		Instantiate(obj, new Vector3(this.GetLeft() + pos.x,this.GetTop() - pos.y, 0), Quaternion.AngleAxis (90, Vector3.left) * Quaternion.AngleAxis (90*rotationNum, Vector3.up));
 	}
 
 	public bool PlaceUnit(Unit unit, int xTile, int yTile) {
@@ -191,10 +196,8 @@ public class Map : MonoBehaviour {
 		Vector2 pos = this.GetPositionFromTile(xTile+0.5f,yTile+0.5f);
 
 		//GET BOUNDS
-		float top =  this.renderer.bounds.center.x - (this.renderer.bounds.extents.x);
-		float left =  this.renderer.bounds.center.y + (this.renderer.bounds.extents.y);
 
-		unit.transform.position = new Vector3(top + pos.x,left - pos.y, -0.01f);
+		unit.transform.position = new Vector3(this.GetLeft() + pos.x,this.GetTop() - pos.y, -0.01f);
 
 		return true;
 	}
@@ -212,11 +215,31 @@ public class Map : MonoBehaviour {
         return retPos;
     }
 
-	Vector2 GetPositionFromTile(float xPos, float yPos) {
+	public Vector2 GetPositionFromTile(float xPos, float yPos) {
 		float tileWidth, tileHeight;
 		tileWidth = (this.renderer.bounds.extents.x * 2) / sizeX;
 		tileHeight = (this.renderer.bounds.extents.y * 2) / sizeY;
 
 		return new Vector2(tileWidth * xPos,tileHeight * yPos);
+	}
+
+	public float GetTop()
+	{
+		return this.renderer.bounds.center.y + this.renderer.bounds.extents.y;
+	}
+
+	public float GetLeft()
+	{
+		return this.renderer.bounds.center.x - this.renderer.bounds.extents.x;
+	}
+
+	public float GetBottom()
+	{
+		return this.renderer.bounds.center.y - this.renderer.bounds.extents.y;
+	}
+
+	public float GetRight()
+	{
+		return this.renderer.bounds.center.x + this.renderer.bounds.extents.x;
 	}
 }
