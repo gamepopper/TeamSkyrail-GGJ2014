@@ -201,7 +201,7 @@ public class GameplayGUI : MonoBehaviour {
 			if (selection == 0)
 			{
 				guiLargeText.normal.textColor = white;
-				GUI.Label(new Rect(Screen.width/2 - 170, Screen.height/2, 200, 150), "You take the route of a coward?");
+				GUI.Label(new Rect(Screen.width/2 - 170, Screen.height/2, 300, 150), "You take the route of a coward?");
 			}
 			else
 				guiLargeText.normal.textColor = grey;
@@ -211,7 +211,7 @@ public class GameplayGUI : MonoBehaviour {
 			if (selection == 1)
 			{
 				guiLargeText.normal.textColor = white;
-				GUI.Label(new Rect(Screen.width/2 - 170, Screen.height/2, 200, 150), "Do you take a stand?");
+				GUI.Label(new Rect(Screen.width/2 - 170, Screen.height/2, 300, 150), "Do you take a stand?");
 			}
 			else
 				guiLargeText.normal.textColor = grey;
